@@ -1,5 +1,5 @@
 " This is thesp0nge vimrc file
-" 
+"
 " v202103
 " This config is inspired by: https://levelup.gitconnected.com/tweak-your-vim-as-a-powerful-ide-fcea5f7eff9c
 set nocompatible
@@ -12,9 +12,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ntpeters/vim-better-whitespace'
 
 " for tag management
-Plug 'ludovicchabant/vim-gutentags' 
+Plug 'ludovicchabant/vim-gutentags'
 
 " for lint
 Plug 'dense-analysis/ale'
@@ -58,6 +59,7 @@ colorscheme nord
 let g:gitgutter_set_sign_backgrounds = 0
 
 "-- Whitespace highlight --
+highlight ExtraWhitespace ctermbg=Red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -68,8 +70,11 @@ autocmd BufWinLeave * call clearmatches()
 hi clear ALEErrorSign
 hi clear ALEWarningSign
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_sign_error = '‚úò'
-let g:ale_sign_warning = '‚óã'
+let g:ale_sign_error = "✗"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_style_error = "⚡"
+let g:ale_sign_style_warning = "⚡"
+
 hi Error    ctermfg=204 ctermbg=NONE guifg=#ff5f87 guibg=NONE
 hi Warning  ctermfg=178 ctermbg=NONE guifg=#D7AF00 guibg=NONE
 hi ALEError ctermfg=204 guifg=#ff5f87 ctermbg=52 guibg=#5f0000 cterm=undercurl gui=undercurl
@@ -93,4 +98,3 @@ let g:ale_fix_on_save = 1
 
 "-- NERDTree --
 let NERDTreeShowHidden=1
-
