@@ -22,6 +22,8 @@ Plug 'dense-analysis/ale'
 
 " for displaying git differences
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
+Plug 'hari-rangarajan/CCTree' 
 call plug#end()
 
 set modeline
