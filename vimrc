@@ -23,7 +23,7 @@ Plug 'dense-analysis/ale'
 " for displaying git differences
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'hari-rangarajan/CCTree' 
+Plug 'hari-rangarajan/CCTree'
 call plug#end()
 
 set modeline
@@ -100,3 +100,18 @@ let g:ale_fix_on_save = 1
 
 "-- NERDTree --
 let NERDTreeShowHidden=1
+
+if has("gui_running")
+    set guifont="Ubuntu Mono 12"
+endif
+
+function! AuditStart()
+        execute "normal! 0i# AUDIT\<SPACE>\
+        	\<C-R>=strftime('%c')\<CR>\<CR>\
+        	\# START:\<SPACE>\<CR>
+        	\# AUDIT\<CR>"
+		execute "normal! 2k"
+		execute "startinsert!"
+endfunction
+command! AuStart call AuditStart()
+nnoremap as :call AuditStart()<CR>
