@@ -113,5 +113,25 @@ function! AuditStart()
 		execute "normal! 2k"
 		execute "startinsert!"
 endfunction
-command! AuStart call AuditStart()
+
+function! AuditNote()
+        execute "normal! 0i# AUDIT\<SPACE>\
+        	\<C-R>=strftime('%c')\<CR>\<CR>\
+        	\# NOTE:\<SPACE>\<CR>
+        	\# AUDIT\<CR>"
+		execute "normal! 2k"
+		execute "startinsert!"
+endfunction
+
+function! AuditReport()
+        execute "normal! 0i# AUDIT\<SPACE>\
+        	\<C-R>=strftime('%c')\<CR>\<CR>\
+        	\# REPORT:\<SPACE>\<CR>
+        	\# AUDIT\<CR>"
+		execute "normal! 2k"
+		execute "startinsert!"
+endfunction
+
 nnoremap as :call AuditStart()<CR>
+nnoremap an :call AuditNote()<CR>
+nnoremap ar :call AuditReport()<CR>
