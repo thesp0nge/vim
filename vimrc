@@ -123,6 +123,17 @@ function! AuditNote()
 		execute "startinsert!"
 endfunction
 
+function! AuditIssue()
+        execute "normal! 0i# AUDIT\<SPACE>\
+        	\<C-R>=strftime('%c')\<CR>\<CR>\
+        	\# ISSUE:\<SPACE>\<CR>
+        	\# CVE:\<SPACE>\<CR>
+        	\# CVSS:\<SPACE>\<CR>
+        	\# AUDIT\<CR>"
+		execute "normal! 2k"
+		execute "startinsert!"
+endfunction
+
 function! AuditReport()
         execute "normal! 0i# AUDIT\<SPACE>\
         	\<C-R>=strftime('%c')\<CR>\<CR>\
@@ -135,3 +146,4 @@ endfunction
 nnoremap as :call AuditStart()<CR>
 nnoremap an :call AuditNote()<CR>
 nnoremap ar :call AuditReport()<CR>
+nnoremap ai :call AuditIssue()<CR>
