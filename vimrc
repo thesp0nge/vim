@@ -1,15 +1,18 @@
 " This is thesp0nge vimrc file
 "
-" v202103
-" This config is inspired by: https://levelup.gitconnected.com/tweak-your-vim-as-a-powerful-ide-fcea5f7eff9c
+" v202302
+" This config is inspired by:
+"   * https://levelup.gitconnected.com/tweak-your-vim-as-a-powerful-ide-fcea5f7eff9c
+"   * https://www.linuxfordevices.com/tutorials/linux/turn-vim-into-an-ide
 set nocompatible
 "
 " Plugin configuration
 call plug#begin(expand('~/.vim/plugged'))
 Plug 'arcticicestudio/nord-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/nerdtree'
+Plug 'LunarWatcher/auto-pairs'
+Plug 'preservim/nerdtree' , { 'on': 'NERDTreeToggle'  }
+Plug 'maxboisvert/vim-simple-complete'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ntpeters/vim-better-whitespace'
@@ -100,50 +103,18 @@ let g:ale_fix_on_save = 1
 
 "-- NERDTree --
 let NERDTreeShowHidden=1
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 if has("gui_running")
-    set guifont="Ubuntu Mono 12"
+    set guifont="Envy Code R 12"
 endif
 
-function! AuditStart()
-        execute "normal! 0i# AUDIT\<SPACE>\
-        	\<C-R>=strftime('%c')\<CR>\<CR>\
-        	\# START:\<SPACE>\<CR>
-        	\# AUDIT\<CR>"
-		execute "normal! 2k"
-		execute "startinsert!"
-endfunction
+if has("syntax")
+    syntax on
+endif
 
-function! AuditNote()
-        execute "normal! 0i# AUDIT\<SPACE>\
-        	\<C-R>=strftime('%c')\<CR>\<CR>\
-        	\# NOTE:\<SPACE>\<CR>
-        	\# AUDIT\<CR>"
-		execute "normal! 2k"
-		execute "startinsert!"
-endfunction
-
-function! AuditIssue()
-        execute "normal! 0i# AUDIT\<SPACE>\
-        	\<C-R>=strftime('%c')\<CR>\<CR>\
-        	\# ISSUE:\<SPACE>\<CR>
-        	\# CVE:\<SPACE>\<CR>
-        	\# CVSS:\<SPACE>\<CR>
-        	\# AUDIT\<CR>"
-		execute "normal! 2k"
-		execute "startinsert!"
-endfunction
-
-function! AuditReport()
-        execute "normal! 0i# AUDIT\<SPACE>\
-        	\<C-R>=strftime('%c')\<CR>\<CR>\
-        	\# REPORT:\<SPACE>\<CR>
-        	\# AUDIT\<CR>"
-		execute "normal! 2k"
-		execute "startinsert!"
-endfunction
-
-nnoremap as :call AuditStart()<CR>
-nnoremap an :call AuditNote()<CR>
-nnoremap ar :call AuditReport()<CR>
-nnoremap ai :call AuditIssue()<CR>
+set spelllang=en
+set directory^=$HOME/.vim/tmp//
